@@ -8,12 +8,12 @@ from twilio.twiml.messaging_response import MessagingResponse
 import requests
 import random
 
-MAN_TALKS = ["111Hi there sweetheart, what would you like mansplained to you today? You can text our man experts a nice photo and they can help you understand what it's about.",
-                "222Hi there sweetheart, what would you like mansplained to you today? You can text our man experts a nice photo and they can help you understand what it's about.",
-                "333Hi there sweetheart, what would you like mansplained to you today? You can text our man experts a nice photo and they can help you understand what it's about."]
+MAN_TALKS = ["111Hi there sweetheart, what would you like mansplained to you today? You can send our man experts a nice photo and they can help you understand what it's about.",
+                "222Hello honey, what would you like mansplained to you today? Send a nice photo to our man experts, they will help you understand what it's about.",
+                "333Hello dear, how are you doing, what would you like mansplained to you today? You can text our man experts a nice photo and they can help you understand what it's about."]
 
-MAN_EXPLAIN = ["111Okay, I can understand how a girl like you might find that confusing. Let me mansplain that for you: \n\n {} \n\nI hope that was helpful, but you still look a little lost. How about we discuss this further over a nice dinner? Don't worry, I have your number now, so I'll call you.",
-                "222Okay, I can understand how a girl like you might find that confusing. Let me mansplain that for you: \n\n {} \n\nI hope that was helpful, but you still look a little lost. How about we discuss this further over a nice dinner? Don't worry, I have your number now, so I'll call you.",
+MAN_EXPLAIN = ["111Okay, I can understand this is challenging for you. Let me mansplain that for you: \n\n {} \n\nI hope that was helpful, if not we could discuss this further over a nice dinner. Don't worry, I have your number now, so I'll call you.",
+                "222Wow, nice photo. Let me mansplain that for you: \n\n {} \n\nI hope that was helpful, but you still look a little lost. How about we discuss this further over a nice dinner? Don't worry, I have your number now, so I'll call you.",
                 "333Okay, I can understand how a girl like you might find that confusing. Let me mansplain that for you: \n\n {} \n\nI hope that was helpful, but you still look a little lost. How about we discuss this further over a nice dinner? Don't worry, I have your number now, so I'll call you."]
 
 appC = ClarifaiApp("T6ZF_EuGDplxDhLUk2qtkCvEJdn_lT_usf00zAWc", "clwcHLrrami5VJj2PzIGSc7tiwFUGbTsP8Fg0HDd")
