@@ -42,7 +42,7 @@ def incoming_sms():
 
    # Determine the right reply for this message
 
-    if body == 'Join scavenger hunt':
+    if body == 'Mansplain it to me!':
 
         #open file scavengerList and add new number to file
         nameHandle = open('scavengerlist.txt', 'a')
@@ -51,24 +51,22 @@ def incoming_sms():
         nameHandle.close()
 
         #text reply to new participant with welcome and first clue of hunt
-        resp.message("Hi, welcome to HackNY Scavenger Hunt! The first clue is clock. You must text a photo of a clock that our AI tags and recognizes as a clock to get the next clue. Good Luck!")
+        resp.message("Hi, what would you like mansplained to you? You can text our man experts a word or phrase or a photo of what you would like mansplained.")
+        resp.message("Text WORD to send a word or phrase or PHOTO to text a photo.")
 
-    else:
+    else if body == "TEXT":
+
+        resp.message("Thanks for the text, sweetheart. Let me go get a man to explain that to you.")
+
+        #CODE TO RETURN WIKI RESULTS
+
+    else if body == "PHOTO":
+
         myURL = request.form['MediaUrl0']
 
         imageurl = api.tag_image_urls(myURL)
 
-        tag_collection = []
-        numTags = 10
-        for i in range(0, numTags):
-            tag = imageurl["results"][0]["result"]["tag"]["classes"][i]
-            #add tag to collection list
-            tag_collection.append(tag)
-
-        counter = 0
-        for x in tag_collection:
-
-            winner = get_winner()
+        tag = imageurl["results"][0]["result"]["tag"]["classes"][1]
 
             #AI tag returned correct tag, found first clue
             if x == "clock":
