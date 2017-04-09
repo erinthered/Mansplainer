@@ -1,21 +1,22 @@
-### Project
-  **Mansplainer**
+## Project
+   **Mansplainer**
 
-### Installing
+## Installing
 
-### Running & Testing
+## Running & Testing
 
-### Authors
+## Built With
+   **Programming Languages**
+      Python
+      HTML/CSS
+      
+   **Resources**
+      Twilio
+      MangoDB
+      Clarifai
+
+## Authors
    Erin Williams
    Henry Shen
    Khalid Alnuaim
    Dandan Lin
-
-### Built With
-   **Programming Languages**
-      * Python
-      * HTML/CSS
-   **Resources**
-      * Twilio
-      * MangoDB
-      * Clarifai
