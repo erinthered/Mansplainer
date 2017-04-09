@@ -18,60 +18,46 @@ client = Client(account_sid, auth_token)
 
 app = Flask(__name__)
 
-#list of phone numbers of winners of scavenger hunt
-winnerList = []
+@app.route("/", methods=['GET', 'POST'])
 
-#global counter to keep track of number of winner slots available
-winnerCounter = 3
+def incoming_sms():
 
-def get_winner():
-    global winnerCounter
-    return(winnerCounter)
+    """Send a dynamic reply to an incoming text message"""
 
-    def set_winner(winner):
-        global winnerCounter
-        winnerCounter = winner
+    # Start our TwiML response
+    resp = twilio.twiml.Response()
+    # Get the message the user sent our Twilio number
+    body = request.form['Body']
+    from_number = request.values.get('From')
 
-        @app.route("/", methods=['GET', 'POST'])
+    # Determine the right reply for this message
 
-        def incoming_sms():
+    if body == 'Mansplain it to me!':
 
-            """Send a dynamic reply to an incoming text message"""
+        #open file scavengerList and add new number to file
+        nameHandle = open('scavengerlist.txt', 'a')
+        nameHandle.write(from_number)
+        nameHandle.write('\n')
+        nameHandle.close()
 
-            # Start our TwiML response
-            resp = twilio.twiml.Response()
-            # Get the message the user sent our Twilio number
-            body = request.form['Body']
-            from_number = request.values.get('From')
+        #text reply to new participant with welcome and first clue of hunt
+        resp.message("Hi, what would you like mansplained to you? You can text our man experts a word or phrase or a photo of what you would like mansplained.")
+        resp.message("Text WORD to send a word or phrase or PHOTO to text a photo.")
 
-            # Determine the right reply for this message
+    elif body == "TEXT":
 
-            if body == 'Mansplain it to me!':
+        resp.message("Thanks for the text, sweetheart. Let me go get a man to explain that to you.")
 
-                #open file scavengerList and add new number to file
-                nameHandle = open('scavengerlist.txt', 'a')
-                nameHandle.write(from_number)
-                nameHandle.write('\n')
-                nameHandle.close()
+        #CODE TO RETURN WIKI RESULTS
 
-                #text reply to new participant with welcome and first clue of hunt
-                resp.message("Hi, what would you like mansplained to you? You can text our man experts a word or phrase or a photo of what you would like mansplained.")
-                resp.message("Text WORD to send a word or phrase or PHOTO to text a photo.")
+    elif body == "PHOTO":
 
-            elif body == "TEXT":
+        myURL = request.form['MediaUrl0']
 
-                resp.message("Thanks for the text, sweetheart. Let me go get a man to explain that to you.")
+        imageurl = api.tag_image_urls(myURL)
 
-                #CODE TO RETURN WIKI RESULTS
-
-            elif body == "PHOTO":
-
-                myURL = request.form['MediaUrl0']
-
-                imageurl = api.tag_image_urls(myURL)
-
-                tag = imageurl["results"][0]["result"]["tag"]["classes"][1]
+        tag = imageurl["results"][0]["result"]["tag"]["classes"][1]
 
 
-                if __name__ == "__main__":
-                    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
