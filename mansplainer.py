@@ -35,18 +35,12 @@ def incoming_sms():
     resp = MessagingResponse()
 
     # Determine the right reply for this message
+    body = body.upper()
 
-    if body == 'Mansplain it to me!':
+    if body == 'MANSPLAIN':
 
-        #text reply to new participant with welcome and first clue of hunt
         resp.message("Hi there sweetheart, what would you like mansplained to you today? You can text our man experts a nice photo and they can help you understand what it's about.")
         return str(resp)
-
-    #elif body == "TEXT":
-
-    #    resp.message("Thanks for the text, sweetheart. Let me go get a man to explain that to you.")
-
-        #CODE TO RETURN WIKI RESULTS
 
     else:
 
@@ -58,18 +52,15 @@ def incoming_sms():
 
         imageresult = model.predict_by_url(url=image_URL)
 
-        #resp.message("Okay, I can understand how a girl like you might find that confusing. Let me mansplain that for you: {} I hope that was helpful, but you still look a little lost. How about we discuss this further over a nice dinner? Don't worry, I have your number now, so I'll call you.".format())
-
         tag = imageresult["outputs"][0]["data"]["concepts"][0]["name"]
         tag2 = imageresult["outputs"][0]["data"]["concepts"][1]["name"]
 
         mansplanation = wiki.getSummaryFromWiki(tag)
-        if mansplanation = None:
-            mansplain = wiki.getSummaryFromWiki(tag2)
 
-        resp.message("Okay, I can understand how a girl like you might find that confusing. Let me mansplain that for you: \n {} I hope that was helpful, but you still look a little lost. How about we discuss this further over a nice dinner? Don't worry, I have your number now, so I'll call you.".format(str(mansplanation)))
-        #resp.message(str(mansplanation))
-        #return str(resp)
+        if mansplanation == None:
+            mansplanation = wiki.getSummaryFromWiki(tag2)
+
+        resp.message("Okay, I can understand how a girl like you might find that confusing. Let me mansplain that for you: \n\n {} \n\nI hope that was helpful, but you still look a little lost. How about we discuss this further over a nice dinner? Don't worry, I have your number now, so I'll call you.".format(str(mansplanation)))
 
         #resp.message("I hope that was helpful, but you still look a little lost. How about we discuss this further over a nice dinner? Don't worry, I have your number now, so I'll call you.")
         return str(resp)
