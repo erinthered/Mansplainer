@@ -7,13 +7,13 @@
 
 ## Built With
    **Programming Languages**
-      Python
-      HTML/CSS
+      * Python
+      * HTML/CSS
       
    **Resources**
-      Twilio
-      MangoDB
-      Clarifai
+      * Twilio
+      * MangoDB
+      * Clarifai
 
 ## Authors
    Erin Williams
