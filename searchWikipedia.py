@@ -32,6 +32,7 @@ def getTaggedText(text):
 	tagged = pos_tag(tokenizedText)
 	return tagged
 
+""""""
 def getNounPhrase(taggedText):
 	grammar = '''NP: {<JJ>*<NNP>*<NN>?}'''
 	grammar2 = '''NP:	{<DT>?<JJ>?<NN>}'''
