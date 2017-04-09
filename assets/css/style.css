@@ -384,10 +384,11 @@ input {
 	position: fixed;
     bottom: 0;
     right: 0;
+	width: 40%;
 }
 
 .bubble-img {
-
+	width: 80%;
 }
 
 .mobile-number {
