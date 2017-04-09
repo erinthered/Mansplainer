@@ -17,10 +17,8 @@ MAN_EXPLAIN = ["111Okay, I can understand how a girl like you might find that co
                 "333Okay, I can understand how a girl like you might find that confusing. Let me mansplain that for you: \n\n {} \n\nI hope that was helpful, but you still look a little lost. How about we discuss this further over a nice dinner? Don't worry, I have your number now, so I'll call you."]
 
 appC = ClarifaiApp("T6ZF_EuGDplxDhLUk2qtkCvEJdn_lT_usf00zAWc", "clwcHLrrami5VJj2PzIGSc7tiwFUGbTsP8Fg0HDd")
-# account_sid = "ACbe0730baeb75b5f6a870f65bfabe386d"
-# auth_token = "0d08cdad7424c231bc1f34a6b3456777"
-account_sid = "AC0238bab7d96f228df2bf125fe60c060d"
-auth_token = "d41f17b4e273bc0c585340d5a8318098"
+account_sid = "ACbe0730baeb75b5f6a870f65bfabe386d"
+auth_token = "0d08cdad7424c231bc1f34a6b3456777"
 client = Client(account_sid, auth_token)
 
 app = Flask(__name__)
