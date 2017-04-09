@@ -18,6 +18,8 @@ def getSummaryFromWiki(query):
 		wikiExtract = httpBody["extract"]
 		return wikiExtract
 
+def splitSummary(wikiSummary):
+	return wikiSummary.split(".")
 
 def main():
 	query = "mountain"
