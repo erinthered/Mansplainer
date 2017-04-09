@@ -4,6 +4,7 @@
 
 import requests
 import json 
+import sys
 
 WIKI_SUMMARY_URL = "https://simple.wikipedia.org/api/rest_v1/page/summary/{}?redirect=false"
 
@@ -17,11 +18,12 @@ def getSummaryFromWiki(query):
 	httpBody = wikiRequest.json()
 	
 	if (wikiRequest.status_code >= 400):
-		print("Error page not found")
-		return None
+		return ["Wow that's really complex topic, honey."]
 	else:
 		wikiExtract = httpBody["extract"]
-		return wikiExtract
+		abbrevExtract = wikiExtract.split(".")[:2]
+		print(abbrevExtract)			
+		return abbrevExtract
 
 	
 # def getTokenizedWord(sentence):
@@ -46,7 +48,7 @@ def getSummaryFromWiki(query):
 
 
 def main():
-	query = "mountain"
+	query = sys.argv[1]
 	summary = getSummaryFromWiki(query)
 	print(summary)
 
