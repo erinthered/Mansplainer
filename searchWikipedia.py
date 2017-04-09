@@ -1,9 +1,5 @@
-# import nltk
-# from nltk import pos_tag
-# from nltk.tokenize import sent_tokenize, word_tokenize
-
 import requests
-import json 
+import json
 import sys
 
 
@@ -17,33 +13,14 @@ def getSummaryFromWiki(query):
 	formattedURL = WIKI_SUMMARY_URL.format(query)
 	wikiRequest = requests.get(formattedURL)
 	httpBody = wikiRequest.json()
-	
+
 	if (wikiRequest.status_code >= 400):
-		return ["Wow that's really complex topic, honey."]
+		return ["Wow that's a really complex topic, honey. I don't think you can handle it, why don't you try something simpler?"]
 	else:
 		wikiExtract = httpBody["extract"]
 		abbrevExtract = wikiExtract.split(".")[:2]
-		print(abbrevExtract)			
+		print(abbrevExtract)
 		return abbrevExtract
-
-# def getTokenizedWord(sentence):
-# 	return word_tokenize(sentence)
-
-# def getTaggedText(text):
-# 	tokenizedText = getTokenizedWord(text)
-# 	tagged = pos_tag(tokenizedText)
-# 	return tagged
-
-# """"""
-# def getNounPhrase(taggedText):
-# 	grammar = '''NP: {<JJ>*<NNP>*<NN>?}'''
-# 	grammar2 = '''NP:	{<DT>?<JJ>?<NN>}'''
-# 	cp = nltk.RegexpParser(grammar2)
-# 	result = cp.parse(taggedText)
-# 	leaves = []
-# 	for subtree in result.subtrees(filter=lambda x: x.label()=="NP"):
-# 		leaves.append(subtree.leaves())
-# 	return leaves
 
 def main():
 	query = sys.argv[1]
