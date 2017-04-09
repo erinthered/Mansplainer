@@ -12,7 +12,7 @@ MAN_TALKS = ["Hi there sweetheart, what would you like mansplained to you today?
                 "Hello honey, what would you like mansplained to you today? Send a nice photo to our man experts, they will help you understand what it means.",
                 "Hi there cutie, what would you like mansplained to you today? I know this is tough, but just hit the send photo button and our man experts will do the hard part for you."]
 
-MAN_EXPLAIN = ["Okay, I this is not something that a woman could be expected to know, so let me mansplain it right away! \n\n {} \n\nDid you understand what I said? Now, now, don't get all hysterical, it makes you less pretty!",
+MAN_EXPLAIN = ["Okay, I know this is not something that a woman could be expected to know, so let me mansplain it right away! \n\n {} \n\nDid you understand what I said? Now, now, don't get all hysterical, it makes you less pretty!",
                 "Wow, nice photo, for a girl, but I can see that you don't really get it like I do: \n\n {} \n\nNo, no. No need to thank me, just seeing a pretty girl smile is enough reward for me.",
                 "Okay, I can understand how a girl like you might find that confusing. Let me mansplain that for you: \n\n {} \n\nI'm sure that was helpful, but you still look a little lost. How about we discuss this further over a nice dinner? Don't worry, I have your number now, so I'll call you."]
 
