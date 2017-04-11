@@ -27,6 +27,10 @@ client = Client(TWILIO_SID, TWILIO_TOKEN)
 
 app = Flask(__name__)
 
+@app.route("/", methods=['GET'])
+def index():
+    return 'Mansplainer'
+
 @app.route("/incoming_sms", methods=['GET', 'POST'])
 def incoming_sms():
     if request.method == 'GET':
