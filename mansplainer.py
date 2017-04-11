@@ -29,36 +29,39 @@ app = Flask(__name__)
 
 @app.route("/incoming_sms", methods=['GET', 'POST'])
 def incoming_sms():
-    """Send a dynamic reply to an incoming text message"""
-    # Start our TwiML response
-    resp = MessagingResponse()
+    if request.method == 'GET':
+        return 'Mansplainer'
+    elif request.method == 'POST':
+        """Send a dynamic reply to an incoming text message"""
+        # Start our TwiML response
+        resp = MessagingResponse()
 
-    # Determine the right reply for this message
-    try:
-        myURL = request.form["MediaUrl0"]
-    except Exception as e:
-        myURL = 'NaN'
+        # Determine the right reply for this message
+        try:
+            myURL = request.form["MediaUrl0"]
+        except Exception as e:
+            myURL = 'NaN'
 
-    if myURL != 'NaN':
-        myURL = request.form["MediaUrl0"]
-        req = requests.get(myURL)
-        image_URL = req.url
-        model = appC.models.get("general-v1.3")
-        imageresult = model.predict_by_url(url=image_URL)
+        if myURL != 'NaN':
+            myURL = request.form["MediaUrl0"]
+            req = requests.get(myURL)
+            image_URL = req.url
+            model = appC.models.get("general-v1.3")
+            imageresult = model.predict_by_url(url=image_URL)
 
-        mansplanation = None
-        for tag in imageresult["outputs"][0]["data"]["concepts"]:
-            mansplanation = wiki.getSummaryFromWiki(tag["name"])
-            if mansplanation != None:
-                break
+            mansplanation = None
+            for tag in imageresult["outputs"][0]["data"]["concepts"]:
+                mansplanation = wiki.getSummaryFromWiki(tag["name"])
+                if mansplanation != None:
+                    break
 
-        reply_num = random.randint(0,2)
-        resp.message(MAN_EXPLAIN[reply_num].format(str(mansplanation)))
-        return str(resp)
-    else:
-        reply_num = random.randint(0,2)
-        resp.message(MAN_TALKS[reply_num])
-        return str(resp)
+            reply_num = random.randint(0,2)
+            resp.message(MAN_EXPLAIN[reply_num].format(str(mansplanation)))
+            return str(resp)
+        else:
+            reply_num = random.randint(0,2)
+            resp.message(MAN_TALKS[reply_num])
+            return str(resp)
 
 if __name__ == "__main__":
     app.run(debug=True)
