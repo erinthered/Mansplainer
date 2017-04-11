@@ -1,12 +1,14 @@
 #!/usr/bin/python
+import os
+import requests
+import random
+from boto.s3.connection import S3Connection
 from clarifai.rest import ClarifaiApp
 import searchWikipedia as wiki
 from flask import Flask, request, redirect
 from twilio.rest import Client
 from twilio import twiml
 from twilio.twiml.messaging_response import MessagingResponse
-import requests
-import random
 
 MAN_TALKS = ["Hi there sweetheart, what would you like mansplained to you today? You can send our man experts a nice photo and they can help you understand what it's about.",
                 "Hello honey, what would you like mansplained to you today? Send a nice photo to our man experts, they will help you understand what it means.",
@@ -16,12 +18,12 @@ MAN_EXPLAIN = ["Okay, I know this is not something that a woman could be expecte
                 "Wow, nice photo, for a girl, but I can see that you don't really get it like I do: \n\n {} \n\nNo, no. No need to thank me, just seeing a pretty girl smile is enough reward for me.",
                 "Okay, I can understand how a girl like you might find that confusing. Let me mansplain that for you: \n\n {} \n\nI'm sure that was helpful, but you still look a little lost. How about we discuss this further over a nice dinner? Don't worry, I have your number now, so I'll call you."]
 
-
-appC = ClarifaiApp("", "")
-
-account_sid = "This was an sid"
-auth_token = "this was a token"
-client = Client(account_sid, auth_token)
+CLARIFAI_ID = os.environ['CLARIFAI_ID']
+CLARIFAI_SECRET = os.environ['CLARIFAI_SECRET']
+TWILIO_SID = os.environ['TWILIO_SID']
+TWILIO_TOKEN = os.environ['TWILIO_TOKEN']
+appC = ClarifaiApp(CLARIFAI_ID, CLARIFAI_SECRET)
+client = Client(TWILIO_SID, TWILIO_TOKEN)
 
 app = Flask(__name__)
 
