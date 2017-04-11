@@ -2,7 +2,6 @@
 import os
 import requests
 import random
-from boto.s3.connection import S3Connection
 from clarifai.rest import ClarifaiApp
 import searchWikipedia as wiki
 from flask import Flask, request, redirect
