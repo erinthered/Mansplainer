@@ -15,12 +15,12 @@ def getSummaryFromWiki(query):
 	httpBody = wikiRequest.json()
 
 	if (wikiRequest.status_code >= 400):
-		return ["Wow that's a really complex topic, honey. I don't think you can handle it, why don't you try something simpler?"]
+		return None 
 	else:
 		wikiExtract = httpBody["extract"]
 		abbrevExtract = wikiExtract.split(".")[:2]
-		print(abbrevExtract)
-		return abbrevExtract
+		extractString = abbrevExtract[0] + "." + abbrevExtract[1] + "." + abbrevExtract[2] + "."
+		return extractString
 
 def main():
 	query = sys.argv[1]
