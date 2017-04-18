@@ -55,11 +55,11 @@ def incoming_sms():
             resultList = imageresult["outputs"][0]["data"]["concepts"]
             selectedConcept = random.choice(resultList)
             mansplanation = wiki.getSummaryFromWiki(selectedConcept)
-            while (mansplanation == None) : #search again if previous search did not find anything 
-                selectedConcept = random.choice(resultList)
-                mansplanation = wiki.getSummaryFromWiki(selectedConcept)
-                if mansplanation != None:
-                    break
+            # while (mansplanation == None) : #search again if previous search did not find anything 
+            #     selectedConcept = random.choice(resultList)
+            #     mansplanation = wiki.getSummaryFromWiki(selectedConcept)
+            #     if mansplanation != None:
+            #         break
 
             reply_num = random.randint(0,2)
             resp.message(MAN_EXPLAIN[reply_num].format(str(mansplanation)))
