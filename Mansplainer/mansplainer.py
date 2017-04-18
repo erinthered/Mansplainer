@@ -66,5 +66,8 @@ def incoming_sms():
             resp.message(MAN_TALKS[reply_num])
             return str(resp)
 
+def run():
+    app.run()
+
 if __name__ == "__main__":
     app.run(debug=True)
