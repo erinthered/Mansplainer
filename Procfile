@@ -1,1 +1,1 @@
-web: gunicorn mansplainer:app
+web: gunicorn mansplainer.mansplainer:app
