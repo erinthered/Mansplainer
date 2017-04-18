@@ -396,6 +396,16 @@ input {
 	font-size: 5.5em;
 }
 
+@media only screen and (max-width : 480px) {
+	.mobile-number {
+		font-size: 3em;
+	}
+
+	.footer-img {
+		width: 60%;
+	}
+}
+
 .footer-text {
 	position: fixed;
     bottom: 0;
