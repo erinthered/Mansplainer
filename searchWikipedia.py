@@ -18,7 +18,7 @@ def getSummaryFromWiki(query):
 	httpBody = wikiRequest.json()
 	pageData = httpBody["query"]["pages"]
 	if ("-1" in pageData):
-		return "Wow that's really complex. I'm sure if I tried to explain this too much blood would go to your brain and not your lady parts " + query 
+		return query #"Wow that's really complex. I'm sure if I tried to explain this too much blood would go to your brain and not your lady parts " + query 
 	else:
 		
 		queryResult = pageData.values()
