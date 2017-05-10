@@ -52,11 +52,14 @@ def incoming_sms():
             model = appC.models.get("general-v1.3")
             imageresult = model.predict_by_url(url=image_URL)
 
-            mansplanation = None
-            for tag in imageresult["outputs"][0]["data"]["concepts"]:
-                mansplanation = wiki.getSummaryFromWiki(tag["name"])
-                if mansplanation != None:
-                    break
+            resultList = imageresult["outputs"][0]["data"]["concepts"]
+            selectedConcept = random.choice(resultList)
+            mansplanation = wiki.getSummaryFromWiki(selectedConcept)
+            # while (mansplanation == None) : #search again if previous search did not find anything 
+            #     selectedConcept = random.choice(resultList)
+            #     mansplanation = wiki.getSummaryFromWiki(selectedConcept)
+            #     if mansplanation != None:
+            #         break
 
             reply_num = random.randint(0,2)
             resp.message(MAN_EXPLAIN[reply_num].format(str(mansplanation)))
